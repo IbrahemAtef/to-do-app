@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     async addData(){
-      await axios.post("http://localhost:5000/addToDo",{
+      await axios.post(`http://localhost:${process.env.PORT || 5000}/addToDo`,{
         text : this.task    
       })
       .then(resp =>console.log(resp))
@@ -37,7 +37,7 @@ export default {
     },
     async deleteToDo(index) {
       await axios
-        .delete(`http://localhost:5000/deleteToDo/${index}`)
+        .delete(`http://localhost:${process.env.PORT || 5000}/deleteToDo/${index}`)
         .then((resp) => {
           console.log(resp);
         })
@@ -46,7 +46,7 @@ export default {
         });
     },
     async deleteAll(){  
-      await axios.delete("http://localhost:5000/deleteAll")
+      await axios.delete(`http://localhost:${process.env.PORT || 5000}/deleteAll`)
       .then(resp =>console.log(resp))
       .catch(err=>console.log(err));
     },
@@ -54,7 +54,7 @@ export default {
       $e.target.parentNode.className = "task done"
     },
     async getAllTaks(){
-      await axios.get("http://localhost:5000/allList")
+      await axios.get(`http://localhost:${process.env.PORT || 5000}/allList`)
       .then(resp => {
         this.toDo = resp.data;
         this.getAllTaks()
