@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "start": "npm start --prefix backend"
+    "start": "npm run server --prefix backend"
   },
   "dependencies": {
     "axios": "^0.20.0",
