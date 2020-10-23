@@ -1,0 +1,29 @@
+{
+  "name": "deploybank",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server",
+    "server": "node server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IbrahemAtef/deployBank.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IbrahemAtef/deployBank/issues"
+  },
+  "homepage": "https://github.com/IbrahemAtef/deployBank#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.25"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
