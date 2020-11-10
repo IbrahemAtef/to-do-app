@@ -10,7 +10,7 @@ app.use(express.json({ extended: false }));
 
 connectDB();
 
-app.post('/addToDo', async (req, res) => {
+app.post('/api/addToDo', async (req, res) => {
     const { text } = req.body;
     let toDo = new toDoModel({
         text,
@@ -23,7 +23,7 @@ app.post('/addToDo', async (req, res) => {
     })
 });
 
-app.get('/allList', async (req, res) => {
+app.get('/api/allList', async (req, res) => {
     await toDoModel.find({})
         .then(response => {
             res.send(response)
@@ -33,7 +33,7 @@ app.get('/allList', async (req, res) => {
         })
 })
 
-app.delete('/deleteToDo/:index', async (req, res) => {
+app.delete('/api/deleteToDo/:index', async (req, res) => {
     const { index } = req.params
     await toDoModel.deleteOne({ index })
         .then(response => {
@@ -44,7 +44,7 @@ app.delete('/deleteToDo/:index', async (req, res) => {
         })
 });
 
-app.delete('/deleteAll', async (req, res) => {
+app.delete('/api/deleteAll', async (req, res) => {
     await toDoModel.deleteMany({})
         .then(response => {
             res.send(response)
@@ -53,6 +53,15 @@ app.delete('/deleteAll', async (req, res) => {
             res.send(err);
         })
 });
+
+if (process.env.NODE_ENV === 'production') {
+    // Static folder
+    app.use(express.static(__dirname + '/public/'));
+    console.log(__dirname);
+    // Handle SPA 
+    app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html')); 
+}
+
 
 const PORT = process.env.PORT || 5000;
 
